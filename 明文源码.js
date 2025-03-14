@@ -299,7 +299,7 @@ async function 维列斯OverWSHandler(request) {
 				hasError,
 				message,
 				addressType,
-				portRemote = 443,
+				portRemote = 2083,
 				addressRemote = '',
 				rawDataIndex,
 				维列斯Version = new Uint8Array([0, 0]),
@@ -1186,7 +1186,7 @@ function 配置信息(UUID, 域名地址) {
 
 	const 别名 = FileName;
 	let 地址 = 域名地址;
-	let 端口 = 443;
+	let 端口 = 2083;
 
 	const 用户ID = UUID;
 	const 加密方式 = 'none';
@@ -1304,7 +1304,7 @@ async function 生成配置信息(userID, hostName, sub, UA, RproxyIP, _url, fak
 					cfips.map(cidr => generateRandomIPFromCIDR(cidr) + ':' + randomPorts[Math.floor(Math.random() * randomPorts.length)] + '#CF随机节点' + String(counter++).padStart(2, '0'))
 				);
 			} else {
-				const randomPorts = httpsPorts.concat('443');
+				const randomPorts = httpsPorts.concat('2083');
 				addresses = addresses.concat(
 					cfips.map(cidr => generateRandomIPFromCIDR(cidr) + ':' + randomPorts[Math.floor(Math.random() * randomPorts.length)] + '#CF随机节点' + String(counter++).padStart(2, '0'))
 				);
@@ -1407,8 +1407,8 @@ async function 生成配置信息(userID, hostName, sub, UA, RproxyIP, _url, fak
 					<strong>3.</strong> 快速切换 <a href='${atob('aHR0cHM6Ly9naXRodWIuY29tL2NtbGl1L1dvcmtlclZsZXNzMnN1Yg==')}'>优选订阅生成器</a> 至：sub.google.com，您可将"?sub=sub.google.com"参数添加到链接末尾，例如：<br>
 					&nbsp;&nbsp;https://${proxyhost}${hostName}/${uuid}<strong>?sub=sub.google.com</strong><br>
 					<br>
-					<strong>4.</strong> 快速更换 PROXYIP 至：proxyip.cmliussss.net:443，您可将"?proxyip=proxyip.cmliussss.net:443"参数添加到链接末尾，例如：<br>
-					&nbsp;&nbsp; https://${proxyhost}${hostName}/${uuid}<strong>?proxyip=proxyip.cmliussss.net:443</strong><br>
+					<strong>4.</strong> 快速更换 PROXYIP 至：proxyip.cmliussss.net:2083，您可将"?proxyip=proxyip.cmliussss.net:2083"参数添加到链接末尾，例如：<br>
+					&nbsp;&nbsp; https://${proxyhost}${hostName}/${uuid}<strong>?proxyip=proxyip.cmliussss.net:2083</strong><br>
 					<br>
 					<strong>5.</strong> 快速更换 SOCKS5 至：user:password@127.0.0.1:1080，您可将"?socks5=user:password@127.0.0.1:1080"参数添加到链接末尾，例如：<br>
 					&nbsp;&nbsp;https://${proxyhost}${hostName}/${uuid}<strong>?socks5=user:password@127.0.0.1:1080</strong><br>
@@ -1609,7 +1609,7 @@ async function 整理优选列表(api) {
 
 				const lines = content.split(/\r?\n/);
 				let 节点备注 = '';
-				let 测速端口 = '443';
+				let 测速端口 = '2083';
 
 				if (lines[0].split(',').length > 3) {
 					const idMatch = api[index].match(/id=([^&]*)/);
@@ -1637,7 +1637,7 @@ async function 整理优选列表(api) {
 									return baseItem;
 								}
 							} else {
-								return `${baseItem}:443`;
+								return `${baseItem}:2083`;
 							}
 							return null; // 不符合条件时返回 null
 						}).filter(Boolean)); // 过滤掉 null 值
@@ -1830,7 +1830,7 @@ function 生成本地订阅(host, UUID, noTLS, newAddressesapi, newAddressescsv,
 				}
 			}
 		}
-		if (port == "-1") port = "443";
+		if (port == "-1") port = "2083";
 
 		let 伪装域名 = host;
 		let 最终路径 = path;
@@ -1890,7 +1890,7 @@ async function sendMessage(type, ip, add_data = "") {
 			headers: {
 				'Accept': 'text/html,application/xhtml+xml,application/xml;',
 				'Accept-Encoding': 'gzip, deflate, br',
-				'User-Agent': 'Mozilla/5.0 Chrome/90.0.4430.72'
+				'User-Agent': 'Mozilla/5.0 Chrome/90.0.20830.72'
 			}
 		});
 	} catch (error) {
